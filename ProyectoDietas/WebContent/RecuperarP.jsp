@@ -51,46 +51,27 @@
 						<div class="panel-heading" role="tab" id="headingOne">
 						  <h4 class="panel-title">
 							<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-							  Ingresar
+							  Recuperar Contrasena
 							</a>
 						  </h4>
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 						  <div class="panel-body">
-							<form class="form-horizontal" action="Entra" method="post">
+							<form class="form-horizontal" action="RecuperaPass" method="post">
 							  <fieldset>
 								<legend>Legend</legend>
 								<div class="form-group">
 								 
 								  <div class="col-lg-10">
-									<input class="form-control" id="txtEmail" name ="txtEmail" placeholder="Usuario / Correo" type="text">
+									<input class="form-control" id="txtEmail" name ="txtEmail" placeholder="Usuario / Correo" type="text" required>
 								  </div>
 								</div>
 								<div class="form-group">
 								  <div class="col-lg-10">
-									<input class="form-control" id="txtPass" name ="txtPass"placeholder="Contraseña" type="password">
 									<div class="checkbox">
 									
-									<% 
-									HttpSession sesion = request.getSession();
-									if(sesion.getAttribute("tipo") != null){
-											if(sesion.getAttribute("tipo") != null){
-												if(sesion.getAttribute("tipo").equals("UN"))
-												out.println("<label id=\"error\">Usuario Invalido<label>");
-												else if(sesion.getAttribute("tipo").equals("PN"))
-													out.println("<label id=\"error\">Contraseña incorrecta<label>");
-												else if(sesion.getAttribute("tipo").equals("incorrecto"))
-													out.println("<label id=\"error\">Contraseña incorrecta<label>");
-												else if(sesion.getAttribute("tipo").equals("DI"))
-													out.println("<label id=\"error\">Campos incompletos<label>");
 									
-											}
-									}
-										
-									%>
-									  <label >
-										<a href="RecuperarP.jsp">Olvide mi contraseña</a>
-									  </label>
+									  
 									</div>
 								  </div>
 								</div>
@@ -113,7 +94,7 @@
 						<div class="panel-heading" role="tab" id="headingTwo">
 						  <h4 class="panel-title">
 							<a href="preregistro.html">
-							  Registrarme
+							  Recuperar Contrasena.
 							</a>
 						  </h4>
 						</div>

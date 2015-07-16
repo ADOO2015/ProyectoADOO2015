@@ -146,7 +146,8 @@
 </body>
 <% 
 String x[]=(String[])sesion.getAttribute("x");
-String y[]=(String[])sesion.getAttribute("y");%>
+String y[]=(String[])sesion.getAttribute("y");
+%>
 
 <script type="text/javascript">
 	

@@ -2,7 +2,7 @@ package pojos;
 
 public class Correo {
 	private String usuarioCorreo;
-	private String contraseña;
+	private String contrasena;
 	private String rutaArchivo;
 	private String nombreArchivo;
 	private String destino;
@@ -15,10 +15,10 @@ public class Correo {
 		this.usuarioCorreo = usuarioCorreo;
 	}
 	public String getContrasena() {
-		return contraseña;
+		return contrasena;
 	}
-	public void setContrasena(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 	public String getRutaArchivo() {
 		return rutaArchivo;

@@ -16,6 +16,12 @@
     	Usuario a = new Usuario();
     	a = (Usuario)sesion.getAttribute("Usuario");
     	String nombre = a.getNombre();
+    	
+    	String idPac=String.valueOf(request.getParameter("idPac"));
+    	
+    	CitaNutriologoDAO citaNutDAO = new CitaNutriologoDAO();
+    	ArrayList<Cita> citas = citaNutDAO.obtenerCitas(Integer.parseInt(a.getId()), Integer.parseInt(idPac),true);
+    	ArrayList<Cita> citasAll = citaNutDAO.obtenerCitas(Integer.parseInt(a.getId()), Integer.parseInt(idPac),false);
     %>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,36 +36,32 @@
 	
 </head>
 <body>
-
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Logo</a>
+        </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Inicio <span class="sr-only">(current)</span></a></li>
-		<li ><a href="#">Contacto</a></li>
-        <li><a href="#">Mas de nosotros</a></li>
-        
-      </ul>
-      
-     
-    </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+          <ul class="nav navbar-nav navbar-right">
+              <li><h3><%=nombre%></h3></li>
+              <li><a href="CerrarSesion">Cerrar Sesion</a></li>
+
+          </ul>
+      </div>
   </div>
 </nav>
 
-
 <div class="container">
 		<div class="row">
-			<div class="col-md-12">			
+			<div class="col-md-12">
+			<center>	
 				<h1>Citas del Paciente</h1>
 				<div></div>
 				<div style="width:50%">
@@ -68,59 +70,79 @@
 						<table class = "table table-striped">
 							<thead>
 								<tr>
-									<th>Día</th>
-									<th>Mes</th>
-									<th>Año</th>
+									<th>Fecha</th>
 									<th>Hora</th>
+									<th>Observaciones</th>
 								</tr>
 							</thead>
 								<tbody>
-									<tr>
-										<td>18</td>
-										<td>Diciembre</td>
-										<td>2014</td>
-										<td>13:30</td>
-									</tr>
+									<%
+								        if(citasAll != null){
+								        	for(int i = 0; i < citasAll.size(); i++){ 
+										%>
+										<tr>
+								            <td><%=citasAll.get(i).getFecha() %></td>
+								            <td><%=citasAll.get(i).getHora() %></td>
+								            <td><%=citasAll.get(i).getObservaciones() %></td>
+								       	</tr>          		
+								        <%
+								        	}//End for
+								        } else{%>
+								        	<tr><td>No tiene citas registradas</td></tr>
+								        <%} %>
 								</tbody>
 						</table>
 					</div>
 				</div>
+				</center>
 			</div>
 			</div>
-			
-			<h3>Citas Agendadas</h3>
+			<center>
+			<h3>Proximas Citas Agendadas</h3>
 				<div>
 				<div style="width:50%">
 						<table class = "table table-striped">
 							<thead>
 								<tr>
-									<th>Día</th>
-									<th>Mes</th>
-									<th>Año</th>
+									
+									<th>Fecha</th>
 									<th>Hora</th>
+									<th>Observaciones</th>
 									<th>Eliminar</th>
 								</tr>
 							</thead>
 								<tbody>
-									<tr>
-										<td>18</td>
-										<td>Agosto</td>
-										<td>2015</td>
-										<td>13:30</td>
-										<td><button type="submit" class="btn btn-primary" >X</button></td>
-									</tr>
+									<%
+								        if(citas != null){
+								        	for(int i = 0; i < citas.size(); i++){ 
+										%>
+										<tr>
+								            <td><%=citas.get(i).getFecha() %></td>
+								            <td><%=citas.get(i).getHora() %></td>
+								            <td><%=citas.get(i).getObservaciones() %></td>
+								            <td><button type="submit" class="btn btn-primary">X</button></td>
+								       	</tr>          		
+								        <%
+								        	}//End for
+								        } else{%>
+								        	<tr><td>No tiene citas registradas</td></tr>
+								        <%} %>
 								</tbody>
 						</table>
-				</div>
-				
-				
+				</div>			
+				<h3>AgendarCita</h3>
+				</center>
 				<div>
-						<form class = "form-horizontal">
+						<form class = "form-horizontal" action="/registrarCita" method="post">
 							<fieldset>
 								<div class="col-lg-1">
-								<input class="form-control" id="DÃ­a" placeholder="Día" type="text">
-								<input class="form-control" id="Mes" placeholder="Mes" type="text">
-								<input class="form-control" id="AÃ±o" placeholder="Año" type="text">
+								<input class="form-control" id="dia" placeholder="Día" type="text" name="dia" required>
+								<input class="form-control" id="mes" placeholder="Mes" type="text" name="mes" required>
+								<input class="form-control" id="ano" placeholder="Año" type="text" name="ano" required>
+								<input class="form-control" id="hora" placeholder="Hora (hh:mm)" type="text" name="hora" width="50px" required>
+								<textarea id="obs" placeholder="Observaciones de la cita" type="text" name="obs" rows="4" cols="34" required></textarea>
+								<input type="hidden" id="idMed" name="idMed" value="<%out.println(a.getId());%>"">
+								<input type="hidden" id="idPac" name="idPac" value="<%out.println(idPac);%>">
 								</div>
 								<div class="form-group">
 								<div class="col-lg-10 col-lg-offset-2">
@@ -130,7 +152,7 @@
 							</fieldset>
 						</form>
 				</div>
-			
+
 				
 		</div> <!-- /row -->
 

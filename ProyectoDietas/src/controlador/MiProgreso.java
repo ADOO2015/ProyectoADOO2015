@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pojos.Progreso;
 import pojos.Usuario;
 import modelo.AccessUsuarioDAO;
-import modelo.Progreso;
 import modelo.ProgresoDAO;
 
 /**
@@ -46,16 +46,42 @@ public class MiProgreso extends HttpServlet {
 		int contador=0;
 		List<String> x= new ArrayList<String>();
 		List<String> y= new ArrayList<String>();
-		if(progresos.length > 0){
+		if(progresos.length == 1){
+			if(progresos[0].getFecha().substring(5, 7).equals("01")){
+				x.add("Enero");
+			}else if(progresos[0].getFecha().substring(5, 7).equals("02"))
+				x.add("Febrero");
+			else if(progresos[0].getFecha().substring(5, 7).equals("03"))
+				x.add("Marzo");
+			else if(progresos[0].getFecha().substring(5, 7).equals("04"))
+				x.add("Abril");
+			else if(progresos[0].getFecha().substring(5, 7).equals("05"))
+				x.add("Mayo");
+			else if(progresos[0].getFecha().substring(5, 7).equals("06"))
+				x.add("Junio");
+			else if(progresos[0].getFecha().substring(5, 7).equals("07"))
+				x.add("Julio");
+			else if(progresos[0].getFecha().substring(5, 7).equals("08"))
+				x.add("Agosto");
+			else if(progresos[0].getFecha().substring(5, 7).equals("09"))
+				x.add("Septiembre");
+			else if(progresos[0].getFecha().substring(5, 7).equals("10"))
+				x.add("Octubre");
+			else if(progresos[0].getFecha().substring(5, 7).equals("11"))
+				x.add("Noviembre");
+			else if(progresos[0].getFecha().substring(5, 7).equals("12"))
+				x.add("Diciembre");
+			y.add(String.valueOf(progresos[0].getPeso()));
+		}
+		if(progresos.length > 1){
 			String mes = progresos[0].getFecha().substring(5, 7);
 		
-		if(progresos.length==1)
-			
+		
 		System.out.println(mes);
 		for(int i=1;i<progresos.length;i++){
 			System.out.println(mes);
 
-			if(progresos[i].getFecha().substring(5, 7).equals(progresos[i-1].getFecha().substring(5, 7)) ){
+			if( progresos[i].getFecha().substring(5, 7).equals(progresos[i-1].getFecha().substring(5, 7)) ){
 				
 			}else{
 				if(progresos[i-1].getFecha().substring(5, 7).equals("01")){
@@ -152,7 +178,34 @@ public class MiProgreso extends HttpServlet {
 	int contador=0;
 	List<String> x= new ArrayList<String>();
 	List<String> y= new ArrayList<String>();
-	if(progresos.length > 0){
+	if(progresos.length == 1){
+		if(progresos[0].getFecha().substring(5, 7).equals("01")){
+			x.add("Enero");
+		}else if(progresos[0].getFecha().substring(5, 7).equals("02"))
+			x.add("Febrero");
+		else if(progresos[0].getFecha().substring(5, 7).equals("03"))
+			x.add("Marzo");
+		else if(progresos[0].getFecha().substring(5, 7).equals("04"))
+			x.add("Abril");
+		else if(progresos[0].getFecha().substring(5, 7).equals("05"))
+			x.add("Mayo");
+		else if(progresos[0].getFecha().substring(5, 7).equals("06"))
+			x.add("Junio");
+		else if(progresos[0].getFecha().substring(5, 7).equals("07"))
+			x.add("Julio");
+		else if(progresos[0].getFecha().substring(5, 7).equals("08"))
+			x.add("Agosto");
+		else if(progresos[0].getFecha().substring(5, 7).equals("09"))
+			x.add("Septiembre");
+		else if(progresos[0].getFecha().substring(5, 7).equals("10"))
+			x.add("Octubre");
+		else if(progresos[0].getFecha().substring(5, 7).equals("11"))
+			x.add("Noviembre");
+		else if(progresos[0].getFecha().substring(5, 7).equals("12"))
+			x.add("Diciembre");
+		y.add(String.valueOf(progresos[0].getPeso()));
+	}
+	if(progresos.length > 1){
 		String mes = progresos[0].getFecha().substring(5, 7);
 	
 	
@@ -160,7 +213,7 @@ public class MiProgreso extends HttpServlet {
 	for(int i=1;i<progresos.length;i++){
 		System.out.println(mes);
 
-		if(progresos[i].getFecha().substring(5, 7).equals(progresos[i-1].getFecha().substring(5, 7)) ){
+		if( progresos[i].getFecha().substring(5, 7).equals(progresos[i-1].getFecha().substring(5, 7)) ){
 			
 		}else{
 			if(progresos[i-1].getFecha().substring(5, 7).equals("01")){

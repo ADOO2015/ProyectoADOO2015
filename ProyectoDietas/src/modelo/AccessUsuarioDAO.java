@@ -88,6 +88,7 @@ public class AccessUsuarioDAO implements UsuarioDAO {
 				usuario.setSexo(rs.getString("sexo"));
 				usuario.setTipo(rs.getString("TipoUsuario_TipoUsuario"));
 				usuario.setPassword(rs.getString("pass"));
+				usuario.setId(rs.getString("idUsuarioPaciente"));
 				ls.add(usuario);
 			}
 		} catch (SQLException e) {

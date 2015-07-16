@@ -15,11 +15,15 @@
     	Usuario user;
     %>
     <%
-    user = ((AccessUser)(getServletContext().getAttribute("Usuario"))).getUsuario();
+    user = (Usuario) session.getAttribute("Usuario");
     %>
-    <%!
+    <%HttpSession sesion = request.getSession();
+    	Usuario a = new Usuario();
+    	a = (Usuario)sesion.getAttribute("Usuario");
+    	String nombre = a.getNombre();
+    
     	AccessUsuarioDAO pacientes = new AccessUsuarioDAO();
-    	ArrayList<Usuario> usuarios = (ArrayList)pacientes.findByMedico(user.getId());    	
+    	ArrayList<Usuario> usuarios = (ArrayList<Usuario>)pacientes.findByMedico(user.getId());    	
     %> 
     <!DOCTYPE html>
     <html>
@@ -29,7 +33,7 @@
         <meta name="viewport"    content="width=device-width, initial-scale=1.0">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         
-        <title>Layout</title>
+        <title>Mis Pacientes</title>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -46,8 +50,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
           <ul class="nav navbar-nav navbar-right">
-              <li><h3><%="#Usuario"%></h3></li>
-              <li><a href="#">Cerrar Sesion</a></li>
+              <li><h3><%=nombre%></h3></li>
+              <li><a href="CerrarSesion">Cerrar Sesion</a></li>
 
           </ul>
       </div>
@@ -63,12 +67,12 @@
                 </div>
                 <div class="panel-body">
                   <div class="list-group">
-                    <a href="pacientesDoctor.jsp" class="list-group-item acve">
+                    <a href="#" class="list-group-item acve">
                         <img src="img/iconos/pacientes.svg" id="icn"/> Pacientes
                     </a>
                     <a href="#" class="list-group-item"><img src="img/iconos/agenda.svg" id="icn"/> Agenda
                     </a>
-                    <a href="confirmacionPacientes.jsp" class="list-group-item"><img src="img/iconos/registro.svg" id="icn"/> Registro de pacientes
+                    <a href="confirmacionPacientes" class="list-group-item"><img src="img/iconos/registro.svg" id="icn"/> Registro de pacientes
                     </a>
                 </div>
             </div>
@@ -76,7 +80,7 @@
                 <div class="input-group">                              
                     <input type="text" class="form-control" placeholder="Buscar...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Q</button>
+                      <button class="btn btn-default" type="button">Buscar</button>
                   </span>
               </div>
           </div>
@@ -87,21 +91,27 @@
     <div class="jumbotron">
         <table class="table">
         <%
-        String salida = "";
         if(user != null){
         	for(int i = 0; i < usuarios.size(); i++){ 
-         	 salida = ""
-          		+"<tr>"
-           	     +"<td><img src= 'img/iconos/imagenGenerica3.svg' /></td>"
-            	    + "<td><h4>Nombre: " + usuarios.get(i).getNombre() + "</h4><h4>Apellidos:" + usuarios.get(i).getApellidos() + "</h4></td>"
-            	    +"<td><a href='#'><img src='img/iconos/Dieta.svg' id='icn'/></a><a href='#'><img id='icn' src='img/iconos/mensajes.svg'/></a><a href='#'><img id='icn' src='img/iconos/historial.svg'/></a><a href='#'><img  id='icn' src='img/iconos/Progreso.svg'/></a><a href='#'><img src='img/iconos/perfil.svg' id='icn'/></a><a href='#'><img src='img/iconos/agenda.svg' id='icn'/></a></td>" 
-           	 +"</tr>";
-          	out.print(salida);
-       		 }
-        }
-        else
-        	salida = "<tr><td>No tiene pacientes registrados</td></tr>";
-        %>
+		%>
+		<tr>
+            <td><img src= 'img/iconos/imagenGenerica3.svg'/></td>
+            <td><h4> Nombre: <%out.print(usuarios.get(i).getNombre());%></h4>
+            <h4> Apellidos: <%out.print(usuarios.get(i).getApellidos());%></h4></td>
+            <td>
+            	<a href="#"><img src='img/iconos/Dieta.svg' id='icn'/></a>
+            	<a href="#"><img id='icn' src='img/iconos/mensajes.svg'/></a>
+            	<a href="#"><img id='icn' src='img/iconos/historial.svg'/></a>
+            	<a href="#"><img  id='icn' src='img/iconos/Progreso.svg'/></a>
+            	<a href="#"><img src='img/iconos/perfil.svg' id='icn'/></a>
+            	<a href="CitasNutriologo.jsp?idPac=<%out.print(usuarios.get(i).getId());%>"><img src='img/iconos/agenda.svg' id='icn'/></a>
+            </td> 
+       	</tr>          		
+        <%
+        	}//End for
+        } else{%>
+        	<tr><td>No tiene pacientes registrados</td></tr>
+        <%} %>
         </table>                      
 </div>
 </div>

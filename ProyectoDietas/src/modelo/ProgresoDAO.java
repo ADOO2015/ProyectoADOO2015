@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pojos.Progreso;
+
 public class ProgresoDAO {
 	private ConexionBD con = ConexionBD.getInstance();
 	public Progreso[] MiProgreso(String id){
@@ -18,7 +20,8 @@ public class ProgresoDAO {
 			prepStmt = con.builldPreparedStatement(query);
 			prepStmt.setString(1, id);
 			ResultSet rs = prepStmt.executeQuery();
-
+			
+		
 			while(rs.next()){
 				Progreso e= new Progreso();
 				e.setAltura(Float.parseFloat(rs.getString("altura")));
@@ -29,7 +32,7 @@ public class ProgresoDAO {
 				e.setImc(Float.parseFloat(rs.getString("imc")));
 				e.setIcc(Float.parseFloat(rs.getString("icc")));
 				progreso.add(e);
-				
+				System.out.println("que pedo"+e.getPeso());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

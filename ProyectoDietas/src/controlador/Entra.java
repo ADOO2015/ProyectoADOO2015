@@ -40,11 +40,11 @@ public class Entra extends HttpServlet {
 		if(request.getParameter("txtPass").equals("") ||request.getParameter("txtEmail").equals("") ){
 			tipo = "DI";
 		}
+		System.out.println("mi tipo: "+tipo);
 		response.setContentType("text/html");
 		HttpSession sesion = request.getSession();
-		
 		sesion.setAttribute("tipo", tipo);
-		if(tipo.equals("UN") || tipo.equals("PN")||tipo.equals("incorrecto")){
+		if(tipo.equals("UN") || tipo.equals("PN")||tipo.equals("incorrecto")||tipo.equals("DI")){
 			response.sendRedirect("index.jsp");
 		}else if(tipo.equals("Medico") ){
 			sesion.setAttribute("Usuario",a.getUsuario());

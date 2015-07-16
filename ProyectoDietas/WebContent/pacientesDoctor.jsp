@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
           <ul class="nav navbar-nav navbar-right">
               <li><h3><%=nombre%></h3></li>
-              <li><a href="CerrarSesion">Cerrar Sesion</a></li>
+              <li><a href="CerrarSesion.jsp">Cerrar Sesion</a></li>
 
           </ul>
       </div>

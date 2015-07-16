@@ -125,7 +125,7 @@
                     <a href="MiProgreso" class="list-group-item"><img src="img/iconos/Progreso.svg" id="icn"/> Progreso
                     </a>
                     </a>
-                    <a href="#" class="list-group-item"><img src="img/iconos/historial.svg" id="icn"/> Historial
+                    <a href="historialRegimen" class="list-group-item"><img src="img/iconos/historial.svg" id="icn"/> Historial
                     </a>
                     </a>
                     <a href="#" class="list-group-item"><img src="img/iconos/agenda.svg" id="icn"/> Agenda

@@ -51,7 +51,7 @@ public class Entra extends HttpServlet {
 			response.sendRedirect("confirmacionPacientes");
 		}else if( tipo.equals("Paciente")){
 			sesion.setAttribute("Usuario",a.getUsuario());
-			response.sendRedirect("MiProgreso");
+			response.sendRedirect("pacienteLayout.jsp");
 		}
 	}
 

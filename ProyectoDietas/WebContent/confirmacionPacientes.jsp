@@ -83,7 +83,7 @@
 											<td><img src="img/iconos/imagenGenerica3.svg" /></td>
 											<td><h5>${usuario.nombre}</h5>
 												<h5>${usuario.apellidos}</h5></td>
-											<td><a href="ControladorPreRegistro?e=${usuario.correo}"><img src="img/iconos/registro.svg"
+											<td><a href="registro.jsp?e=${usuario.correo}"><img src="img/iconos/registro.svg"
 													id="icn"></a></td>
 										</tr>
 									</c:forEach>

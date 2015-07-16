@@ -1,3 +1,22 @@
+<%@page import = 
+    "pojos.Cita,
+    pojos.Usuario,
+    modelo.AccessUsuarioDAO,
+    modelo.UsuarioDAO,
+    controlador.AccessUser,
+    java.util.ArrayList,
+    modelo.CitaNutriologoDAO"%>
+    <%!
+    	Usuario user;
+    %>
+    <%
+    user = (Usuario) session.getAttribute("Usuario");
+    %>
+    <%HttpSession sesion = request.getSession();
+    	Usuario a = new Usuario();
+    	a = (Usuario)sesion.getAttribute("Usuario");
+    	String nombre = a.getNombre();
+    %>
 <!DOCTYPE html>
 <html lang="es">
 <head>

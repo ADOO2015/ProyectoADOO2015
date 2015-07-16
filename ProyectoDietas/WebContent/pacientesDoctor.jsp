@@ -15,7 +15,7 @@
     	Usuario user;
     %>
     <%
-    user = ((AccessUser)(getServletContext().getAttribute("Usuario"))).getUsuario();
+    user = (Usuario) session.getAttribute("Usuario");
     %>
     <%HttpSession sesion = request.getSession();
     	Usuario a = new Usuario();
@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
           <ul class="nav navbar-nav navbar-right">
               <li><h3><%=nombre%></h3></li>
-              <li><a href="#">Cerrar Sesion</a></li>
+              <li><a href="CerrarSesion">Cerrar Sesion</a></li>
 
           </ul>
       </div>
@@ -67,12 +67,12 @@
                 </div>
                 <div class="panel-body">
                   <div class="list-group">
-                    <a href="pacientesDoctor.jsp" class="list-group-item acve">
+                    <a href="#" class="list-group-item acve">
                         <img src="img/iconos/pacientes.svg" id="icn"/> Pacientes
                     </a>
                     <a href="#" class="list-group-item"><img src="img/iconos/agenda.svg" id="icn"/> Agenda
                     </a>
-                    <a href="confirmacionPacientes.jsp" class="list-group-item"><img src="img/iconos/registro.svg" id="icn"/> Registro de pacientes
+                    <a href="confirmacionPacientes" class="list-group-item"><img src="img/iconos/registro.svg" id="icn"/> Registro de pacientes
                     </a>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 <div class="input-group">                              
                     <input type="text" class="form-control" placeholder="Buscar...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Q</button>
+                      <button class="btn btn-default" type="button">Buscar</button>
                   </span>
               </div>
           </div>

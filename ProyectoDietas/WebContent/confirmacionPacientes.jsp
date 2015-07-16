@@ -4,7 +4,7 @@
     Author     : Nedorowsky
     --%>
 
-<%@page import="java.util.Collection"%>
+<%@page import="java.util.Collection" import="pojos.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -18,6 +18,10 @@
 <title>Layout</title>
 </head>
 <body>
+   <%HttpSession sesion = request.getSession();
+    	Usuario a = new Usuario();
+    	a = (Usuario)sesion.getAttribute("Usuario");
+    	String nombre = a.getNombre();%>
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -33,7 +37,7 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-2">
 				<ul class="nav navbar-nav navbar-right">
-					<li><h3><%="#Usuario"%></h3></li>
+					<li><h3><%=nombre%></h3></li>
 					<li><a href="CerrarSesion.jsp">Cerrar Sesión</a></li>
 
 				</ul>

@@ -63,12 +63,12 @@
 								<div class="form-group">
 								 
 								  <div class="col-lg-10">
-									<input class="form-control" id="txtEmail" name ="txtEmail" placeholder="Usuario / Correo" type="text" required>
+									<input class="form-control" id="txtEmail" name ="txtEmail" placeholder="Usuario / Correo" type="text">
 								  </div>
 								</div>
 								<div class="form-group">
 								  <div class="col-lg-10">
-									<input class="form-control" id="txtPass" name ="txtPass"placeholder="Contraseña" type="password" required>
+									<input class="form-control" id="txtPass" name ="txtPass"placeholder="Contraseña" type="password">
 									<div class="checkbox">
 									
 									<% 

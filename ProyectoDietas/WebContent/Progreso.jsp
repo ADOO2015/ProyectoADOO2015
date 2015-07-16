@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="pojos.Usuario"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,15 +25,21 @@
       </button>
       <a class="navbar-brand" href="#">Logo</a>
     </div>
-
+<%HttpSession sesion = request.getSession();
+    	Usuario a = new Usuario();
+    	a = (Usuario)sesion.getAttribute("Usuario");
+    	String nombre = a.getNombre();%>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
       <ul class="nav navbar-nav">
         <li class="active"><a href="pacienteLayout.jsp">Inicio <span class="sr-only">(current)</span></a></li>
 		<li ><a href="#">Contacto</a></li>
         <li><a href="#">Mas de nosotros</a></li>
-        
       </ul>
-      
+      <ul class="nav navbar-nav navbar-right">
+              <li><h3><%=nombre%></h3></li>
+              <li><a href="CerrarSesion.jsp">Cerrar Sesion</a></li>
+
+          </ul>
      
     </div>
   </div>
@@ -74,10 +80,10 @@
 				  <fieldset>
 					<div class="form-group">
 					  <div class="col-lg-10">
-						<input class="form-control" id="altura" placeholder="Altura" type="text" name="altura">
-						 <input class="form-control" id="peso" placeholder="Peso" type="text" name="peso">
-						  <input class="form-control" id="cadera" placeholder="Cadera" type="text" name="cadera">
-						   <input class="form-control" id="cintura" placeholder="Cintura" type="text" name="cintura">
+						<input class="form-control" id="altura" placeholder="Altura" type="text" name="altura" required>
+						 <input class="form-control" id="peso" placeholder="Peso" type="text" name="peso" required>
+						  <input class="form-control" id="cadera" placeholder="Cadera" type="text" name="cadera" required>
+						   <input class="form-control" id="cintura" placeholder="Cintura" type="text" name="cintura" required>
 					  </div>
 					</div>
 					
@@ -138,7 +144,7 @@
 
 
 </body>
-<% HttpSession sesion = request.getSession();
+<% 
 String x[]=(String[])sesion.getAttribute("x");
 String y[]=(String[])sesion.getAttribute("y");%>
 

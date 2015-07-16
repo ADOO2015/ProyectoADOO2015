@@ -17,7 +17,11 @@
     <%
     user = ((AccessUser)(getServletContext().getAttribute("Usuario"))).getUsuario();
     %>
-    <%!
+    <%HttpSession sesion = request.getSession();
+    	Usuario a = new Usuario();
+    	a = (Usuario)sesion.getAttribute("Usuario");
+    	String nombre = a.getNombre();
+    
     	AccessUsuarioDAO pacientes = new AccessUsuarioDAO();
     	ArrayList<Usuario> usuarios = (ArrayList)pacientes.findByMedico(user.getId());    	
     %> 
@@ -46,7 +50,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
           <ul class="nav navbar-nav navbar-right">
-              <li><h3><%="#Usuario"%></h3></li>
+              <li><h3><%=nombre%></h3></li>
               <li><a href="#">Cerrar Sesion</a></li>
 
           </ul>
